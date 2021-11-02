@@ -10,34 +10,32 @@ typedef vector<vector<int>> vvi;
 typedef pair<int, int> pii;
 typedef vector<pair<int, int>> vpii;
 typedef queue<int> qi;
-typedef stack<int> si;
+
 struct ed {int s; int e; int w;};
 typedef vector<ed> ve;
 
 struct nd {int i; vpii adjw;};
 typedef vector<nd> vn;
+typedef priority_queue<pii,vector<pii>,greater<pii>> pqmii;
 
 #define FOR(i, a, b) for(int i = a; i < b; i++)
 #define FE(x, s) for(auto x : s)
-#define REV(i, a, b) for(int i = b - 1; i >= a; i--)
 #define PSH push_back
-#define POP pop_back
 #define MP(a, b) make_pair(a, b)
 #define F first
 #define S second
 
-
 void print(vpii x) {
   int xs = x.size();
   FOR(i, 0, xs) {
-    cout << x[i].F << " " << x[i].S << "\n";
+    cout << x[i].F << " " << x[i].S + 1 << "\n";
   }
 }
 
 void print(vn x) {
   int xs = x.size();
   FOR(i, 0, xs) {
-    cout << x[i].i << ":\n";
+    cout << x[i].i + 1 << ":\n";
     print(x[i].adjw);
   }
   cout << "\n";
@@ -59,7 +57,7 @@ vn makeAdjMat(int nn, int ne, bool isDirected, bool isWeighted) {
 
 void dfs(vn matrix, int s, bool visited[]) {
 
-  cout << s << "\n";
+  cout << s + 1 << "\n";
 
   visited[s] = true;
   sort(matrix[s].adjw.begin(), matrix[s].adjw.end());
@@ -80,11 +78,29 @@ void bfs(vn matrix, int s, bool visited[]) {
     if (visited[x]) continue;
     visited[x] = true;
     
-    cout << x << "\n";
+    cout << x + 1 << "\n";
     
     sort(matrix[x].adjw.begin(), matrix[x].adjw.end());
     FE(y, matrix[x].adjw) {
       next.push(y.S);
+    }
+  }
+}
+
+void wfs(vn matrix, int s, bool visited[]) {
+  pqmii w;
+  w.push(MP(0, s));
+
+  while(!w.empty()) {
+    pii x = w.top();
+    w.pop();
+    visited[x.S] = true;
+
+    cout << x.S + 1 << "\n";
+
+    FE(y, matrix[x.S].adjw) {
+      if (visited[y.S]) continue;
+      w.push(y);
     }
   }
 }
@@ -99,11 +115,18 @@ int main(void) {
   
   int s;
   cin >> s;
-  
+  s--;
+  cout << "\n";
+
   bool visited[n];
   FOR(i, 0, n) visited[i] = false;
   dfs(matrix, s, visited);
-  
+  cout << "\n";
+
   FOR(i, 0, n) visited[i] = false;
   bfs(matrix, s, visited);
+  cout << "\n";
+
+  FOR(i, 0, n) visited[i] = false;
+  wfs(matrix, s, visited);
 }
