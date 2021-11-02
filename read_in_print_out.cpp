@@ -4,16 +4,13 @@
 
 using namespace std;
 
-typedef long long ll;
 typedef vector<int> vi;
 typedef vector<vector<int>> vvi;
 typedef pair<int, int> pii;
+typedef vector<pii> vpii;
 
 #define FOR(i, a, b) for(int i = a; i < b; i++)
-#define REV(i, a, b) for(int i = b - 1; i >= a; i--)
 #define PSH push_back
-#define POP pop_back
-#define MP(a, b) make_pair(a, b)
 #define F first
 #define S second
 
@@ -59,6 +56,13 @@ void print(vvi x) {
     cout << "\n";
   }
   cout << "\n";
+}
+
+void print(vpii x) {
+  int xs = x.size();
+  FOR(i, 0, xs) {
+    cout << x[i].F << " " << x[i].S << "\n";
+  }
 }
 
 int main(void) {
