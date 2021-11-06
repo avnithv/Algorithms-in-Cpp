@@ -40,8 +40,6 @@ void solve(int n) {
 }
 
 int main(void) {
-  ios::sync_with_stdio(0);
-  cin.tie(0);
   int t;
   cin >> t;
   FOR(i, 1, t + 1) solve(i);
