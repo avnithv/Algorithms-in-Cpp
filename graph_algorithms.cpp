@@ -32,6 +32,19 @@ void print(vi x) {
   }
 }
 
+ve makeEdgeList(int nn, int ne, bool isDirected, bool isWeighted) {
+  ve edges;
+  FOR(i, 0, ne) {
+    int s, e;
+    int w = 0;
+    cin >> s >> e;
+    if (isWeighted) cin >> w;
+    edges.PSH({--s, --e, w});
+    if (!isDirected) edges.PSH({e, s, w});
+  }
+  return edges;
+}
+
 vn makeAdjMat(int nn, int ne, bool isDirected, bool isWeighted) {
   vn matrix;
   FOR(i, 0, nn) matrix.PSH({i, vpii()});
@@ -92,6 +105,22 @@ vi dijkstra(vn matrix, int s, bool visited[], int dist[],vi past) {
     }
   }
     return past;
+}
+
+vi bellman(ve edges, int s, int n, int dist[], vi past) {
+  bool changed;
+  FOR(i, 0, n - 1) {
+    changed = false;
+    FE(edge, edges) {
+      if (dist[edge.e] > dist[edge.s] + edge.w) {
+        dist[edge.e] = dist[edge.s] + edge.w;
+        past[edge.e] = edge.s;
+        changed = true;
+      }
+    }
+    if (!changed) break;
+  }
+  return past;
 }
 
 int main() {
