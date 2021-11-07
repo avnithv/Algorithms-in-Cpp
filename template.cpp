@@ -7,6 +7,8 @@ using namespace std;
 typedef long long ll;
 typedef vector<int> vi;
 typedef vector<vector<int>> vvi;
+typedef vector<bool> vb;
+typedef vector<vector<bool>> vvb;
 typedef pair<int, int> pii;
 typedef vector<pair<int, int>> vpii;
 typedef queue<int> qi;
@@ -29,7 +31,6 @@ typedef priority_queue<pii,vector<pii>,greater<pii>> pqmii;
 #define POP pop_back
 #define MP(a, b) make_pair(a, b)
 #define F first
-#define S second
 
 
 
