@@ -11,7 +11,8 @@ typedef pair<int, int> pii;
 typedef vector<pair<int, int>> vpii;
 typedef queue<int> qi;
 
-struct ed {int s; int e; int w;};
+struct ed {int s; int e; int w;
+bool operator<(ed x) {return w < x.w;}};
 typedef vector<ed> ve;
 
 struct nd {int i; vpii adjw;};
@@ -39,6 +40,19 @@ void print(vn x) {
     print(x[i].adjw);
   }
   cout << "\n";
+}
+
+ve makeEdgeList(int nn, int ne, bool isDirected, bool isWeighted) {
+  ve edges;
+  FOR(i, 0, ne) {
+    int s, e;
+    int w = 0;
+    cin >> s >> e;
+    if (isWeighted) cin >> w;
+    edges.PSH({--s, --e, w});
+    if (!isDirected) edges.PSH({e, s, w});
+  }
+  return edges;
 }
 
 vn makeAdjMat(int nn, int ne, bool isDirected, bool isWeighted) {
