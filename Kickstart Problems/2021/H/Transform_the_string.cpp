@@ -3,7 +3,7 @@
 #include <cmath>
  
 using namespace std;
- 
+  
 typedef long long ll;
 typedef vector<int> vi;
 typedef vector<vector<int>> vvi;
