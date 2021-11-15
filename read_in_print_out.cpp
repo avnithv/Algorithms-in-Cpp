@@ -8,11 +8,26 @@ typedef vector<int> vi;
 typedef vector<vector<int>> vvi;
 typedef pair<int, int> pii;
 typedef vector<pii> vpii;
+typedef vector<char> vc;
 
 #define FOR(i, a, b) for(int i = a; i < b; i++)
 #define PSH push_back
 #define F first
 #define S second
+
+vc read_vc() {
+  vc x;
+  char c;
+  while (cin.get(c) && c != '\n') x.PSH(c);
+  return x;
+}
+
+vc read_vc(int n) {
+  vc x;
+  char c;
+  FOR(i, 0, n) {cin.get(c); x.PSH(c);}
+  return x;
+}
 
 vi read_vi(int n) {
   vi x;
