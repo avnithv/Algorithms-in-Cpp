@@ -37,29 +37,31 @@ typedef priority_queue<pii,vector<pii>,greater<pii>> pqmii;
 
 void print(vc s) {
   int ss = s.size();
-  FOR(i, 0, ss) {
-    cout << s[i];
-  }
+  FOR(i, 0, ss) cout << s[i];
   cout << "\n";
 }
 
-vpci convert(string s){
-  int ss = s.length();
-  vpci x;
-  FOR(i, 0, ss) x.PSH(MP(s[i], i));
-  return x;
+void print(vpci s) {
+  int ss = s.size();
+  FOR(i, 0, ss) cout << s[i].F << s[i].S << "\n";
+  cout << "\n";
 }
 
-bool check(vpci x) {
-  int arr[26] = {0};
+vc sort(vpci x, int n) {
+  vector<vpci> count(n);
   int xs = x.size();
-  FOR(i, 0, xs) {
-    arr[x[i].F - 97] = arr[x[i].F - 97] + 1;
+  vpci str;
+  vc fs(xs, '0');
+  FE(v, x) count[v.F - 97].PSH(v);
+  FE(i, count) {
+    int is = i.size();
+    if (is > xs/2) return fs;
+    FE(j, i) str.PSH(j);
   }
-  FOR(i, 0, 26) {
-    if (arr[i] > xs/2) return false;
+  FOR(x, 0, xs) {
+    fs[str[x].S] = str[(x+xs/2) % xs].F;
   }
-  return true;
+  return fs;
 }
 
 vpci read() {
@@ -76,23 +78,14 @@ vpci read() {
 }
 
 void solve(int n) {
-  vpci str = read();
-  sort(str.begin(), str.end());
-  if (!check(str)) {
+  vpci x = read();
+  vc ans = sort(x, 26);
+  if (ans[0] == '0') {
     cout << "Case #" << n << ": IMPOSSIBLE\n";
     return;
   }
-  int i = str.size();
-  vpci sorted(str.begin() + i/2, str.end());
-  sorted.insert(sorted.end(), str.begin(), str.begin() + i/2);
-  vc fs(i);
-
-  FOR(j, 0, i) {
-    fs[str[j].S] = sorted[j].F;
-  }
-
   cout << "Case #" << n << ": ";
-  print(fs);
+  print(ans);
 }
 
 int main(void) {
