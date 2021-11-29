@@ -80,5 +80,17 @@ void print(vpii x) {
   }
 }
 
+vector<string> split(string inp, string lim) {
+  vector<string> s;
+  int a = inp.find(lim);
+  while (a != -1) {
+    s.push_back(inp.substr(0, a));
+    inp = inp.substr(a + lim.size(), inp.size());
+    a = inp.find(lim);
+  }
+  s.push_back(inp);
+  return s;
+}
+
 int main(void) {
 }
