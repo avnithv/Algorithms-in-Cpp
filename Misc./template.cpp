@@ -38,7 +38,6 @@ typedef priority_queue<pii,vector<pii>,greater<pii>> pqmii;
 #define Y imag()
 #define endl "\n"
 
-
 void solve(int n) {
   // stuff
   int ans = 0;
