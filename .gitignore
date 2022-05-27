@@ -1,5 +1,5 @@
 *.replit
 *.out
-*.bas
+*.sh
 Current Work/*
 *.breakpoints
